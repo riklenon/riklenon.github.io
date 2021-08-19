@@ -1,0 +1,40 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand">Jogadores App </a>
+</nav>
+<div class="container mt-5">
+    <h3>Jogadores</h3>
+    <hr/>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="description" />
+            </div>
+            <div class="col-md-1">
+                <button type="submit" [disabled]="!form.valid"  
+                        class="btn btn-primary">Inserir
+                </button>
+            </div>
+        </div>
+    </form>
+    <hr/>
+    <div class="row">
+      <div class="col-md-7">
+        <ul class="list-group">
+          <li *ngFor="let example of examples" 
+              class="list-group-item d-flex justify-content-between align-items-start">
+              <span class="{{ example.done ? 'done' : '' }}">
+                {{ example.description }} {{ example.dataConclusao }}
+              </span>
+              <div class="btn-group">
+                  <button class="btn btn-success" 
+                          [disabled]="example.done"
+                          (click)="concluir(example)">
+                      Encerrar Vínculo
+                  </button>
+                <button class="btn btn-danger" (click)="delete(example)">Excluir</button>
+              </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
